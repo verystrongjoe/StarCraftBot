@@ -75,12 +75,12 @@ class FullyConv(object):
         self.embed_flat = self._init_embed_obs(self.flat_specs, self._embed_flat)
 
         self.screen_out = nn.DataParallel(nn.Sequential(
-                self._conv2d_init(20, 8, stride=1, kernel_size=5, padding=2),
+                self._conv2d_init(35, 8, stride=1, kernel_size=5, padding=2), # 20
                 nn.ReLU(True),
                 self._conv2d_init(8, 16, stride=1, kernel_size=3, padding=1),
                 nn.ReLU(True)))
         self.minimap_out = nn.DataParallel(nn.Sequential(
-                self._conv2d_init(6, 12, stride=1, kernel_size=5, padding=2),
+                self._conv2d_init(12, 12, stride=1, kernel_size=5, padding=2), # 6
                 nn.ReLU(True),
                 self._conv2d_init(12, 16, stride=1, kernel_size=3, padding=1),
                 nn.ReLU(True)))

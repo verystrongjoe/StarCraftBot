@@ -6,7 +6,8 @@ import torch.functional as F
 from torch.distributions import Categorical
 
 import os
-import numpy as np 
+import pathlib
+import numpy as np
 
 from rl.networks.pt_fully_conv import FullyConv
 from rl.pre_processing import Preprocessor
@@ -37,7 +38,6 @@ class A2CAgent(object):
     def get_value(self, last_obs):
         _, value_estimate = self.step(last_obs)
         return value_estimate
-
 
     def train(self, obs, actions, returns, advs, summary=False):
         obs_var = self._make_var(obs)
@@ -73,6 +73,11 @@ class A2CAgent(object):
             out[k] = v.state_dict()
         out['epoch']  = epoch_count
         out['optimizer'] = self.optimizer.state_dict()
+
+        if not os.path.exists(self.args.save_dir):
+            # os.mkdir(self.args.save_dir)
+            pathlib.Path(self.args.save_dir).mkdir(parents=True, exist_ok=True)
+
         torch.save(out, self.args.save_dir + '.pth.tar')
 
 

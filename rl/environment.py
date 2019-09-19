@@ -2,7 +2,6 @@
 # https://github.com/pekaalto/sc2aibot/blob/master/common/multienv.py
 
 from multiprocessing import Process, Pipe
-
 from pysc2.env import sc2_env, available_actions_printer
 
 
@@ -120,6 +119,17 @@ class SubprocVecEnv:
 
 
 def make_sc2env(**kwargs):
+  
+  agent_format = sc2_env.AgentInterfaceFormat(
+    feature_dimensions=sc2_env.Dimensions(
+      screen=(64, 64),
+      minimap=(64, 64), )
+  )
+
+  kwargs['agent_interface_format'] = [agent_format]
+  kwargs.pop('screen_size_px')
+  kwargs.pop('minimap_size_px')
+  
   env = sc2_env.SC2Env(**kwargs)
   # env = available_actions_printer.AvailableActionsPrinter(env)
   return env

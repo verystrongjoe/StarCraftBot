@@ -3,6 +3,7 @@ import os
 import shutil
 import sys
 import argparse
+import pathlib
 
 # Pytorch 
 import torch
@@ -50,7 +51,8 @@ if not os.path.exists('out'):
     os.mkdir('out')
 model_dir = os.path.join('out', 'pre_trained')
 if not os.path.exists(model_dir):
-    os.mkdir(model_dir)
+    pathlib.Path(model_dir).mkdir(parents=True, exist_ok=True)
+    # os.mkdir(model_dir)
 
 
 def save_checkpoint(epoch_count, network, optimizer):

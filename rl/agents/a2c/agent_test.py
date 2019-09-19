@@ -2,14 +2,11 @@ from collections import namedtuple
 
 import tensorflow as tf
 import numpy as np
-
 from rl.agents.a2c.agent import A2CAgent
-
 
 TestArgType = namedtuple('ArgType', ['name'])
 arg_type = TestArgType('arg')
 A = np.array
-
 
 class A2CAgentTest(tf.test.TestCase):
 
@@ -41,7 +38,6 @@ class A2CAgentTest(tf.test.TestCase):
     with self.test_session() as sess:
       log_probs_out = sess.run(log_probs)
       self.assertAllClose(log_probs_out, expected_log_probs)
-
 
   def test_compute_policy_entropy(self):
     from rl.agents.a2c.agent import compute_policy_entropy

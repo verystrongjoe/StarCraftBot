@@ -65,9 +65,9 @@ parser.add_argument('--cuda', type=bool, default=torch.cuda.is_available(),
                     help='Is using cuda or not')
 parser.add_argument('--lr', type=float, default=1e-3,
                     help='learning rate')
-parser.add_argument('--save_dir', type=str, default='out/models',
+parser.add_argument('--save_dir', type=str, default='out\\models\\',
                     help='root directory for checkpoint storage')
-parser.add_argument('--summary_dir', type=str, default='out/summary',
+parser.add_argument('--summary_dir', type=str, default='out\\summary\\',
                     help='root directory for summary storage')
 
 args = parser.parse_args()
